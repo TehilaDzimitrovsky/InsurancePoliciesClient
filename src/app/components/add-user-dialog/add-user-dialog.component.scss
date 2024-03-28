@@ -1,0 +1,33 @@
+.input-wrap {
+    width: 100%;
+}
+
+.card-wrap {
+    display: contents;
+}
+
+.p-card-r {
+    width: 45% !important;
+}
+
+.input-title {
+    color: burlywood;
+    margin: 2%;
+}
+
+.button-wrap {
+    margin-top: 8%;
+
+}
+
+.ml-1 {
+    width: inherit !important;
+}
+
+.p-element {
+    margin: 2%;
+}
+
+::ng-deep.p-card .p-card-content {
+    padding: 0%;
+}

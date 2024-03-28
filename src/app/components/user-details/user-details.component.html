@@ -1,0 +1,52 @@
+<ng-container *ngIf="load">
+    <h3>
+        Name: {{userDetails?.name}}
+    </h3>
+    <h3>
+        Email: {{userDetails?.email}}
+    </h3>
+    <div>
+        <button pButton class="p-button-rounded p-button-warning" (click)="addPolicy()">Add New Policy</button>
+        <button pButton pRipple type="button" label="Go Back"
+        class="p-element p-ripple p-button-outlined p-button-rounded p-button-warning p-button p-component"
+        (click)="goBack()"></button>
+    </div>
+    <p-table #dt1 [value]="userPolicies" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-gridlines" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                    <div class="p-d-flex p-jc-between p-ai-center"
+                        *ngIf="col.field == 'startDate' || col.field == 'endDate'">
+                        <p-columnFilter type="date" [field]="col.field" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-policy let-i="rowIndex">
+            <tr>
+                <td>{{ policy.policyNumber }}</td>
+                <td>{{ policy.insuranceAmount}}</td>
+                <td>{{ policy.startDate | date: 'yyyy-MM-dd' }}</td>
+                <td>{{ policy.endDate | date: 'yyyy-MM-dd' }}</td>
+                <td>
+                    <div>
+                        <button type="button" class="p-button-success p-button-text" pButton label="Edit Policy"(click)="updatePolicy(policy)"></button>
+                        </div>
+                </td>
+                <td>
+                    <button type="button" pButton label="Delete Policy" class="p-button-danger p-button-text" (click)="deletePolicy(i)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No policies found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-container>

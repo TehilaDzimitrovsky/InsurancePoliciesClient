@@ -1,0 +1,38 @@
+
+<h2 class="title">Users List</h2>
+<div class="add-button">
+    <button pButton class="p-button-rounded p-button-warning" (click)="addNewUser()">Add New User</button>
+</div>
+<div class="table-wrap">
+    <p-table [columns]="cols" [value]="users">
+        <ng-template pTemplate="header" class="ui-table-scrollable-body">
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                </th>
+                <th>Edit User</th>
+                <th>Delete User</th>
+                <th>Show Policies</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-i="rowIndex">
+            <tr>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                    <div><button type="button" (click)="updateUser(user)" class="p-button-success p-button-text" pButton label="Edit User">
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" pButton label="Delete User" class="p-button-danger p-button-text" (click)="deleteUser(i)"></button>
+                </td>
+                <td>
+                    <button type="button" pButton label="Show Policies" class="p-button-warning p-button-text" (click)="showPolicies(user)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <div *ngIf="users.length == 0">No Results</div>
+    </p-table>
+</div>

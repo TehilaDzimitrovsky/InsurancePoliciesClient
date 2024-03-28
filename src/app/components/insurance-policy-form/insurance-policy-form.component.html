@@ -1,0 +1,44 @@
+<div class="flex justify-content-center flex-wrap card-container yellow-container">
+    <p-card class="p-card-r">
+        <ng-template pTemplate="footer">
+            <div>
+                <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+                    <div class="card-wrap wraper">
+                        <div class="field col-12 input-wrap">
+                            <div class="input-title"> <label>Policy Number</label></div>
+                            <input type="text" class="ml-1" pInputText formControlName="policyNumber"
+                                placeholder="Insert Policy Number">
+                        </div>
+                        <div class="field col-12 input-wrap">
+                            <div class="input-title"> <label>Insurance Amount</label></div>
+                            <p-inputNumber inputId="integeronly" formControlName="insuranceAmount"></p-inputNumber>
+                        </div>
+                        <div class="field col-12 input-wrap">
+                            <div class="input-title"><label>Start Date</label></div>
+                            <p-calendar [showIcon]="true" formControlName="startDate" [showButtonBar]="true"
+                                class="w-full">
+                            </p-calendar>
+                        </div>
+                        <div class="field col-12 input-wrap">
+                            <div class="input-title"><label>End Date</label></div>
+                            <p-calendar [showIcon]="true" formControlName="endDate" [showButtonBar]="true"
+                                class="w-full">
+                            </p-calendar>
+                        </div>
+                        <div class="button-wrap">
+                            <button pButton pRipple type="submit" label="Submit"
+                                class="p-element p-ripple p-button-outlined p-button-rounded p-button-success p-button p-component"
+                                icon="pi pi-check" [disabled]="policyForm.invalid"></button>
+                            <button pButton pRipple type="button" label="Clear"
+                                class="p-element p-ripple p-button-outlined p-button-rounded p-button-error p-button p-component"
+                                (click)="clearForm()"></button>
+                            <button pButton pRipple type="button" label="Go Back"
+                                class="p-element p-ripple p-button-outlined p-button-rounded p-button-warning p-button p-component"
+                                (click)="goBack()"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+    </p-card>
+</div>
